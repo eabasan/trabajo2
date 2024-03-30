@@ -11,9 +11,9 @@ public class ParqueAtracciones {
         Atraccion noria = new Atraccion("Noria");
 
         // Crear visitantes
-        Visitante juan = new Visitante("Juan", TipoTicket.ADULTO, 18);
-        Visitante maria = new Visitante("Maria", TipoTicket.NIÑO, 12);
-        Visitante pedro = new Visitante("Pedro", TipoTicket.ADULTO, 25);
+        Visitante juan = new Visitante("Juan", TipoTicket.ADULTO, 18, montanaRusa);
+        Visitante maria = new Visitante("Maria", TipoTicket.NIÑO, 12, noria);
+        Visitante pedro = new Visitante("Pedro", TipoTicket.ADULTO, 25, montanaRusa);
 
         // Registrar visitantes como observadores de las atracciones
         montanaRusa.registrarObservador(juan);
