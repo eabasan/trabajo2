@@ -6,55 +6,28 @@ public class ParqueAtracciones {
 
    
     public static void main(String[] args) {
-        TicketFactory fabricaTickets = new TicketFactory();
+      // Crear atracciones
+        Atraccion montanaRusa = new Atraccion("Montaña Rusa");
+        Atraccion noria = new Atraccion("Noria");
 
-        // Crear diferentes tipos de tickets
-        Ticket ticketAdulto = fabricaTickets.crearTicket(TipoTicket.ADULTO);
-        Ticket ticketNiño = fabricaTickets.crearTicket(TipoTicket.NIÑO);
-        Ticket ticketFastPass = fabricaTickets.crearTicket(TipoTicket.FAST_PASS);
+        // Crear visitantes
+        Visitante juan = new Visitante("Juan", TipoTicket.ADULTO, 18);
+        Visitante maria = new Visitante("Maria", TipoTicket.NIÑO, 12);
+        Visitante pedro = new Visitante("Pedro", TipoTicket.ADULTO, 25);
 
-        // Crear una atracción para probar
-        Atraccion atraccion = new Atraccion("Montaña Rusa");
+        // Registrar visitantes como observadores de las atracciones
+        montanaRusa.registrarObservador(juan);
+        montanaRusa.registrarObservador(pedro);
+        noria.registrarObservador(maria);
 
-        // Simular el acceso a la atracción con cada tipo de ticket
-        System.out.println("Simulación de acceso a la atracción:");
+        // Cambiar estado de las atracciones
+        montanaRusa.cambiarEstado(new AtraccionAbierta());
+        noria.cambiarEstado(new AtraccionCerrada());
 
-        System.out.println("- Ticket de Adulto:");
-        ticketAdulto.entrarAtraccion(atraccion);
-
-        System.out.println("- Ticket de Niño:");
-        ticketNiño.entrarAtraccion(atraccion);
-
-        System.out.println("- Ticket FastPass:");
-        ticketFastPass.entrarAtraccion(atraccion);
-
-        // Patrón Observador: Crear una atracción y suscriptores (visitantes)
-        Atraccion montañaRusa = new Atraccion("Montaña Rusa");
-        Visitante visitante1 = new Visitante("Alice");
-        Visitante visitante2 = new Visitante("Bob");
-
-        // Suscribir los visitantes a la atracción
-        montañaRusa.registrarObservador(visitante1);
-        montañaRusa.registrarObservador(visitante2);
-
-        // Cambiar el estado de la atracción y notificar a los suscriptores
-        montañaRusa.setState(EstadoAtraccion.ABIERTA);
-
-        // Patrón Estrategia: Establecer diferentes estrategias de acceso para los visitantes
-        visitante1.setEstrategiaAcceso(ticketAdulto);
-        visitante2.setEstrategiaAcceso(ticketFastPass);
-
-        // Probar el acceso de los visitantes a la atracción
-        System.out.println("\nAcceso a la atracción después del cambio de estrategia:");
-        montañaRusa.entrarAtraccion(visitante1);
-        montañaRusa.entrarAtraccion(visitante2);
-
-        // Patrón de Estado: Cambiar el estado de la atracción y probar el comportamiento
-        montañaRusa.setState(EstadoAtraccion.CERRADA);
-        System.out.println("\nAcceso a la atracción después de cerrar:");
-        montañaRusa.entrarAtraccion(visitante1);
-        montañaRusa.entrarAtraccion(visitante2);
-    }
+        // Visitantes intentan entrar a las atracciones
+        juan.entrarAtraccion();
+        maria.entrarAtraccion();
+        pedro.entrarAtraccion();
     }
     
 }
