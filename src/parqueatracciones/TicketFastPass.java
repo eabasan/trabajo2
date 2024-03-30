@@ -10,8 +10,7 @@ package parqueatracciones;
  * @author Mettre
  */
 public class TicketFastPass implements Ticket{
-     public void entrarAtraccion(Atraccion atraccion) {
+     public void entrarAtraccion(Atraccion atraccion, Visitante visitante) {
         System.out.println("Acceso FastPass a la atracción: " + atraccion.getNombre());
-        // Lógica específica para el acceso FastPass
     }
 }
